@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { useEffect, useState } from "react";
+import Meal from "./assets/meal.png";
 
 function App() {
   const [carbs, setCarbs] = useState([]);
@@ -38,9 +40,9 @@ function App() {
   };
 
   return (
-    <div className='flex items-center justify-center flex-col w-screen h-screen gap-10'>
-      <h1 className='text-3xl font-bold underline'>Направи ми ядене!</h1>
-
+    <div className='flex items-center justify-center flex-col w-full h-screen gap-10'>
+      <img src={Meal} alt='meal' />
+      <h1 className='text-3xl font-bold'>Направи ми ядене!</h1>
       <form
         action=''
         className='flex  flex-col gap-5'
@@ -53,18 +55,17 @@ function App() {
 
         <button
           type='submit'
-          className='p-4 bg-sky-200 rounded-xl drop-shadow-2xl hover:drop-shadow-xl'
+          className='p-4 bg-sky-200 rounded-xl drop-shadow-2xl'
         >
-          Генерирай
+          Генерирай!
         </button>
       </form>
-
       {meal.protein ? (
         <h1 className='font-bold text-3xl text-center'>
           Днес ще ядеш....
-          <p className='p-4 text-5xl capitalize'>
-            {meal.protein} {meal.carbs ? "с" : null} {meal.carbs} и {meal.salad}{" "}
-            салата
+          <p className='p-4 text-4xl capitalize'>
+            {meal.protein}
+            {meal.carbs ? `, ${meal.carbs}` : null} и {meal.salad} салата
           </p>
         </h1>
       ) : null}
