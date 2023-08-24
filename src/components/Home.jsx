@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "./firebase-config";
-import Meal from "./assets/meal.png";
 
-function App() {
+import { db } from "../firebase-config";
+import Meal from "../assets/meal.png";
+
+const Home = () => {
   const [carbs, setCarbs] = useState([]);
   const [protein, setProtein] = useState([]);
   const [salads, setSalads] = useState([]);
@@ -38,11 +38,12 @@ function App() {
     const containCarbs = e.target.carbs.checked;
     setMeal({ carbs: containCarbs ? c : "", protein: p, salad: s });
   };
-
   return (
-    <div className='flex items-center justify-center flex-col w-full h-screen gap-10'>
+    <div className='my-10 flex items-center justify-center flex-col gap-10'>
+      <h1 className='text-3xl text-black-200 font-bold tracking-wider'>
+        Направи ми ядене!
+      </h1>
       <img src={Meal} alt='meal' />
-      <h1 className='text-3xl font-bold'>Направи ми ядене!</h1>
       <form
         action=''
         className='flex  flex-col gap-5'
@@ -55,7 +56,7 @@ function App() {
 
         <button
           type='submit'
-          className='p-4 bg-sky-200 rounded-xl drop-shadow-2xl'
+          className='p-4 rounded-tl-3xl rounded-br-3xl drop-shadow-xl bg-primary tracking-wider hover:drop-shadow-2xl ease-in duration-100'
         >
           Генерирай!
         </button>
@@ -71,6 +72,6 @@ function App() {
       ) : null}
     </div>
   );
-}
+};
 
-export default App;
+export default Home;
